@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane fx:id="rootPane" styleClass="page" stylesheets="@../styles/style.css"
+    xmlns:fx="http://javafx.com/fxml"
+    fx:controller="ru.tsyden.controllers.SnakeController">
+    <top>
+        <Button text="Назад" fx:id="menuRoute">
+            <BorderPane.margin>
+                <Insets left="10" top="10" />
+            </BorderPane.margin>
+        </Button>
+    </top>
+    <center>
+        <Group fx:id="gameMap">
+        </Group>
+    </center>
+</BorderPane>

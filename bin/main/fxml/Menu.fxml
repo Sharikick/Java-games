@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+
+<?import javafx.geometry.Insets?>
+
+<?import javafx.scene.Cursor?>
+
+<BorderPane styleClass="page" stylesheets="@../styles/style.css" xmlns:fx="http://javafx.com/fxml"
+    fx:controller="ru.tsyden.controllers.MenuController">
+    <center>
+        <VBox alignment="CENTER">
+            <children>
+                <Button fx:id="snakeRoute" minWidth="100" minHeight="40"
+                    styleClass="button" text="Змейка">
+                    <VBox.margin>
+                        <Insets bottom="20" />
+                    </VBox.margin>
+                </Button>
+                <Button fx:id="tetrisRoute" minWidth="100" minHeight="40" styleClass="button"
+                    text="Тетрис">
+                    <VBox.margin>
+                        <Insets bottom="20" />
+                    </VBox.margin>
+                </Button>
+                <Button minWidth="100" minHeight="40" styleClass="button" text="Рекорды" />
+            </children>
+        </VBox>
+    </center>
+</BorderPane>
