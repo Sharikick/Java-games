@@ -2,45 +2,36 @@ package ru.tsyden.entities;
 
 import java.util.Random;
 import javafx.scene.Group;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import ru.tsyden.Point;
 import ru.tsyden.Util;
 import ru.tsyden.constants.SnakeVars;
 
 public class Food {
   private Random random;
-  private Rectangle position;
-  private int x;
-  private int y;
+  private Rectangle food;
+  private Point position;
 
   public Food() {
     this.random = new Random();
+    this.position = new Point();
   }
 
-  public Rectangle getPosition() {
+  public Point getPosition() {
     return this.position;
   }
 
-  public int getX() {
-    return this.x;
-  }
-
-  public int getY() {
-    return this.y;
-  }
-
   public void generateFood(Group gameMap) {
-    this.x = this.random.nextInt(SnakeVars.COUNT_BLOCK);
-    this.y = this.random.nextInt(SnakeVars.COUNT_BLOCK);
-    this.position = Util.createSegment(this.x, this.y, Color.RED);
+    this.position.setX(this.random.nextInt(SnakeVars.COUNT_BLOCK));
+    this.position.setY(this.random.nextInt(SnakeVars.COUNT_BLOCK));
 
-    gameMap.getChildren().add(this.position);
+    this.food = Util.createFoodBlock(this.position.getX(), this.position.getY());
+
+    gameMap.getChildren().add(this.food);
   }
 
   public void render(Group gameMap) {
-    gameMap
-        .getChildren()
-        .remove(this.position);
+    gameMap.getChildren().remove(this.food);
     this.generateFood(gameMap);
   }
 }

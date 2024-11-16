@@ -13,11 +13,32 @@ public class Util {
     stage.show();
   }
 
-  public static Rectangle createSegment(int x, int y, Color color) {
-    Rectangle segment = new Rectangle(SnakeVars.SEGMENT_SIZE, SnakeVars.SEGMENT_SIZE);
-    segment.setFill(color);
-    segment.setX((SnakeVars.BLOCK_SIZE - SnakeVars.SEGMENT_SIZE) / 2 + x * SnakeVars.BLOCK_SIZE);
-    segment.setY((SnakeVars.BLOCK_SIZE - SnakeVars.SEGMENT_SIZE) / 2 + y * SnakeVars.BLOCK_SIZE);
-    return segment;
+  public static Rectangle createFoodBlock(int x, int y) {
+    Rectangle block = new Rectangle(SnakeVars.SEGMENT_SIZE, SnakeVars.SEGMENT_SIZE);
+    block.setFill(Color.RED);
+    block.setX(calculatePosOfSegment(x));
+    block.setY(calculatePosOfSegment(y));
+    return block;
+  }
+
+  public static Rectangle createSnakeBlock(int x, int y) {
+    Rectangle block = new Rectangle(SnakeVars.SEGMENT_SIZE, SnakeVars.SEGMENT_SIZE);
+    block.setFill(Color.GREEN);
+    block.setX(calculatePosOfSegment(x));
+    block.setY(calculatePosOfSegment(y));
+    return block;
+  }
+
+  public static Rectangle createFieldBlock(int x, int y) {
+    Rectangle block = new Rectangle(SnakeVars.BLOCK_SIZE, SnakeVars.BLOCK_SIZE);
+    block.setFill(Color.WHITE);
+    block.setStroke(Color.web("#333"));
+    block.setX(calculatePosOfSegment(x));
+    block.setY(calculatePosOfSegment(y));
+    return block;
+  }
+
+  public static int calculatePosOfSegment(int n) {
+    return (SnakeVars.BLOCK_SIZE - SnakeVars.SEGMENT_SIZE) / 2 + n * SnakeVars.BLOCK_SIZE;
   }
 }

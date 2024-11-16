@@ -11,11 +11,10 @@
     xmlns:fx="http://javafx.com/fxml"
     fx:controller="ru.tsyden.controllers.SnakeController">
     <top>
-        <Button text="Назад" fx:id="menuRoute">
-            <BorderPane.margin>
-                <Insets left="10" top="10" />
-            </BorderPane.margin>
-        </Button>
+        <HBox>
+            <Button text="Назад" fx:id="menuRoute" BorderPane.margin="10 10 0 0" />
+            <Label fx:id="scoreText" />
+        </HBox>
     </top>
     <center>
         <Group fx:id="gameMap">

@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -25,6 +26,9 @@ public class SnakeController {
   private Snake snake;
   private Timeline timeline;
   private Food food;
+  private int score;
+
+  @FXML private Label scoreText;
 
   @FXML private Button menuRoute;
 
@@ -33,25 +37,35 @@ public class SnakeController {
   @FXML
   private void initialize() {
     this.menuRoute.setOnAction(event -> this.handleModeViewMenu(event));
-
     this.initializationGame();
   }
 
   private void initializationGame() {
+    this.score = 0;
     this.snake = new Snake();
     this.food = new Food();
 
+    this.scoreText.setText(Integer.toString(score));
     this.buildGameMap();
     this.snake.initializationSnake(this.gameMap);
     this.food.generateFood(this.gameMap);
-
+    this.snake.setFood(this.food);
     this.timeline =
         new Timeline(
             new KeyFrame(
-                Duration.millis(1000 / 3),
+                Duration.millis(1000 / 10),
                 e -> {
-                  this.update();
-                  this.render();
+                  boolean eat = this.snake.move(
+                      this.gameMap,
+                      () -> {
+                        this.timeline.stop();
+                      });
+                  if (eat) {
+                    this.food.render(this.gameMap);
+                    this.scoreText.setText(Integer.toString(++score));
+                  }
+
+                  this.snake.render(this.gameMap);
                   System.out.println("PING");
                 }));
     this.timeline.setCycleCount(Timeline.INDEFINITE);
@@ -68,20 +82,6 @@ public class SnakeController {
         block.setY(y * SnakeVars.BLOCK_SIZE);
         this.gameMap.getChildren().add(block);
       }
-    }
-  }
-
-  private void render() {
-    this.snake.render(this.gameMap);
-  }
-
-  private void update() {
-    boolean eat = this.snake.move(this.food, () -> {
-      this.timeline.stop();
-      this.gameMap.getChildren().clear();
-    });
-    if (eat) {
-      this.food.render(this.gameMap);
     }
   }
 
