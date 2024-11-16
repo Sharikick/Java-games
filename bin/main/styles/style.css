@@ -6,3 +6,8 @@
     -fx-cursor: hand;
     -fx-font-size: 18px;
 }
+
+.score {
+    -fx-text-fill: #fff;
+    -fx-font-size: 20px;
+}

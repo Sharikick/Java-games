@@ -53,7 +53,7 @@ public class SnakeController {
     this.timeline =
         new Timeline(
             new KeyFrame(
-                Duration.millis(1000 / 10),
+                Duration.millis(1000 / 18),
                 e -> {
                   boolean eat = this.snake.move(
                       this.gameMap,
